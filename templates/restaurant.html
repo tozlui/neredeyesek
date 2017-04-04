@@ -1,0 +1,101 @@
+{% extends "template2.html" %}
+{% block title %}Restaurant Operations{% endblock %}
+{% block content %}
+    <div class="page-header">
+    	<h1>Restaurants</h1>
+    </div>
+    <div class="container">
+    <form action="{{url_for('restaurant_delete')}}" method="post">
+        <div class="col-sm-2"></div>
+        <div class="col-xs-1">ID</div>
+    	<div class="col-sm-2">Name</div>
+    	<div class="col-xs-2">Transportation</div>
+    	<div class="col-xs-1">State</div>
+    	<div class="col-xs-1">Waather Seansitivity</div>
+    	<div class="col-xs-1">Score</div>
+    	<div class="col-xs-1">Votes</div>
+    	<br><br>
+    	{% for place in restaurants %}
+    	<div class="row">
+    		<div class="col-sm-2"><input type="radio" name="select" value="{{ place[0] }}" ></div>
+    		<div class="col-xs-1">{{ place[0] }}</div>
+    		<div class="col-xs-2">{{ place[1] }}</div>
+    		<div class="col-sm-2">{{ place[2] }}</div>
+    		<div class="col-xs-1">{{ place[3] }}</div>
+    		<div class="col-xs-1">{{ place[4] }}</div>
+    		<div class="col-xs-1">{{ place[5] }}</div>
+    		<div class="col-xs-1">{{ place[6] }}</div>
+    		<p id="a"></p>
+    	</div>
+    	{% endfor %}
+    <br>
+    <input type="submit" value="Remove selected">
+    </form>
+    </div>
+
+    <div class="container">
+    <h2>Operations on the table</h2>
+    <h3>Insert</h3>
+    	<form action="{{ url_for('restaurant_insert') }}" method="post">
+    		Name:<br>
+    		<input type="text" name="restaurant_name">
+    		<br>
+    		Transportation:<br>
+    		<select name="restaurant_transportation">
+    				<option value="On Foot">On Foot</option>
+    				<option value="By Car">By Car</option>
+				</select>
+    		<br>
+    		State:<br>
+    		<select name="restaurant_state">
+    				<option value="Active">Active</option>
+    				<option value="Inactive">Inactive</option>
+			</select>
+    		<br>
+    		Weather Sensitivity:<br>
+    		<select name="restaurant_weather">
+    				<option value=TRUE>True</option>
+    				<option value=FALSE>False</option>
+			</select>
+    		<br>
+    		<input type="submit" value="Insert">
+    	</form>
+
+    <h3>Delete All</h3>
+    	<form action="{{url_for('restaurant_delete_all')}}">
+    		<input type="submit" value="Delete all">
+    	</form>
+    <h3>Update</h3>
+    	<form action="{{ url_for('restaurant_update') }}" method="post">
+    		ID :<br>
+    			<select name="restaurant_ID">
+    				{% for place in ids %}
+    					<option value="{{ place[0]}}">{{ place[0] }}</option>
+    				{% endfor %}
+    			</select>
+    		<br>
+    		Name:<br>
+    		<input type="text" name="restaurant_name">
+    		<br>
+    		Transportation:<br>
+    		<select name="restaurant_transportation">
+    				<option value="On Foot">On Foot</option>
+    				<option value="By Car">By Car</option>
+				</select>
+    		<br>
+    		State:<br>
+    		<select name="restaurant_state">
+    				<option value="Active">Active</option>
+    				<option value="Inactive">Inactive</option>
+			</select>
+    		<br>
+    		Weather Sensitivity:<br>
+    		<select name="restaurant_weather">
+    				<option value=TRUE>True</option>
+    				<option value=FALSE>False</option>
+			</select>
+    		<br>
+    		<input type="submit" value="Update">
+    	</form>
+    </div>
+{% endblock %}

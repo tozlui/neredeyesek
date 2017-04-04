@@ -1,0 +1,25 @@
+{% extends "template3.html" %}
+{% block title %}Restaurant Statistics Page{% endblock %}
+{% block user %}{{username}}{% endblock %}
+{% block content %}
+<h1>Restaurants That were chosen continuing period</h1>
+	<div class="container">
+        <div class="col-xs-2">Name</div>
+    	<div class="col-sm-1">On Foot</div>
+    	<div class="col-xs-1">Weather Sensitivity</div>
+    	<div class="col-xs-1">Date</div>
+    	<div class="col-xs-1">Calculated Score</div>
+    	<br><br>
+    	{% for place in statistics %}
+    	<div class="row">
+    		<div class="col-xs-2">{{ place[0] }}</div>
+    		<div class="col-sm-1">{{ place[1] }}</div>
+    		<div class="col-xs-1">{{ place[3] }}</div>
+    		<div class="col-xs-1">{{ place[4] }}</div>
+    		<div class="col-xs-1">{{ place[2] }}</div>
+    		<p id="a"></p>
+    	</div>
+    	{% endfor %}
+    <br>
+    </div>
+{% endblock %}

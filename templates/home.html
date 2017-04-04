@@ -1,0 +1,23 @@
+{% extends "template.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<br><br><br>
+<h1>Welcome to the Nerede Yesek Application</h1>
+<form action = "{{url_for('login_page')}}" method = "post">
+<div class="login">
+	<div class="login-screen">
+		<div class="app-title">
+			<h1 style="color:white;">Login</h1>
+		</div>
+
+		<div class="login-form">
+				<div class="control-group">
+				<input type="text" class="login-field login-input" value="" placeholder="username" id="login-name" name="username">
+				<label class="login-field-icon fui-user" for="login-name"></label>
+				</div>
+				<button type="submit" class="login-btn btn-primary btn-large btn-block" >Login</button>
+		</div>
+	</div>
+</div>
+</form>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "template2.html" %}
+{% block title %}User Operations{% endblock %}
+{% block content %}
+    <div class="page-header">
+    	<h1>Users</h1>
+    </div>
+    <div class="container">
+    <form action="{{url_for('userops_delete')}}" method="post">
+        <div class="col-sm-2"></div>
+        <div class="col-xs-1">ID</div>
+    	<div class="col-sm-2">User Name</div>
+    	<div class="col-xs-1">Email</div>
+    	<br><br>
+    	{% for place in users %}
+    	<div class="row">
+    		<div class="col-sm-2"><input type="radio" name="select" value="{{ place[0] }}" ></div>
+    		<div class="col-xs-1">{{ place[0] }}</div>
+    		<div class="col-sm-2">{{ place[1] }}</div>
+    		<div class="col-xs-1">{{ place[2] }}</div>
+    		<p id="a"></p>
+    	</div>
+    	{% endfor %}
+    <br>
+    <input type="submit" value="Remove selected">
+    </form>
+    </div>
+
+    <div class="container">
+    <h2>Operations on the table</h2>
+    <h3>Insert</h3>
+    	<form action="{{ url_for('userops_insert') }}" method="post">
+    		User Name:<br>
+    		<input type="text" name="user_name">
+    		<br>
+    		Email:<br>
+    		<input type="text" name="user_email">
+    		<br>
+    		<input type="submit" value="Insert">
+    	</form>
+
+    <h3>Delete All</h3>
+    	<form action="{{url_for('userops_delete_all')}}">
+    		<input type="submit" value="Delete all">
+    	</form>
+    <h3>Update</h3>
+    	<form action="{{ url_for('userops_update') }}" method="post">
+    		ID :<br>
+    			<select name="user_ID">
+    				{% for place in ids %}
+    					<option value="{{ place[0]}}">{{ place[0] }}</option>
+    				{% endfor %}
+    			</select>
+    		<br>
+    		User Name:<br>
+    		<input type="text" name="user_name">
+    		<br>
+    		Email:<br>
+    		<input type="text" name="user_email">
+    		<br>
+    		<input type="submit" value="Update">
+    	</form>
+    </div>
+{% endblock %}
