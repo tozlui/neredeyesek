@@ -9,6 +9,13 @@ table, th, td{
     padding: 5px;
 }
 
+@media screen and (max-width: 640px) {
+	table {
+		overflow-x: auto;
+		display: block;
+	}
+}
+
 th{
     font-weight: bold;
 }
