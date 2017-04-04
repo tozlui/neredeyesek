@@ -2,23 +2,25 @@
 {% block title %}Grading Page{% endblock %}
 {% block user %}{{username}}{% endblock %}
 {% block content %}
-<h1>Welcome to the Nerede Yesek Application</h1>
+<div class="page-header">
+	<h1>Welcome to the Nerede Yesek Application</h1>
+</div>
 <h2>Enter Grades For Restaurants</h2>
-	<div class="container">
+	<div class="tabdis">
     <form action="{{url_for('user_grade')}}" method="post">
-        <div class="col-xs-2">Name</div>
-    	<div class="col-xs-1">Score</div>
-    	<br><br>
+    <table>
+       	<th>Name</th>
+   		<th>Score</th>
     	{% for place in restaurants %}
-    	<div class="row">
-    		<div class="col-xs-2">{{ place[1] }}</div>
-    		<input type="number" name="restaurant_score{{ place[0] }}" min="0" max="10" placeholder="0-10">
+    	<tr>
+    		<td>{{ place[1] }}</td>
+    		<td><input type="number" name="restaurant_score{{ place[0] }}" min="0" max="10" placeholder="0-10"></td>
     		<input type="hidden" name="user_name{{ place[0] }}" value="{{ username }}">
     		<input type="hidden" name="restaurant_ID{{ place[0] }}" value="{{ place[0] }}">
-    	</div>
+    	</tr>
     	{% endfor %}
-    	<br>
-    	<input type="submit" value="Grade">
+    </table>
+    <input type="submit" value="Grade">
     </form>
     </div>
 {% endblock %}

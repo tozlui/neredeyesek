@@ -2,24 +2,26 @@
 {% block title %}Restaurants Page{% endblock %}
 {% block user %}{{username}}{% endblock %}
 {% block content %}
-<h1>Welcome to the Nerede Yesek Application</h1>
-	<div class="container">
-        <div class="col-xs-1">Name</div>
-    	<div class="col-sm-2">Transportation</div>
-    	<div class="col-xs-1">State</div>
-    	<div class="col-xs-1">Weather Sensitivity</div>
-    	<div class="col-xs-1">Score</div>
-    	<br><br>
+<div class="page-header">
+	<h1>Welcome to the Nerede Yesek Application</h1>
+</div>
+	<div class="tabdis">
+	<table>
+        <th>Name</th>
+    	<th>Transportation</th>
+    	<th>State</th>
+    	<th>Weather Sensitivity</th>
+    	<th>Score</th>
     	{% for place in restaurants %}
-    	<div class="row">
-    		<div class="col-xs-1">{{ place[0] }}</div>
-    		<div class="col-sm-2">{{ place[1] }}</div>
-    		<div class="col-xs-1">{{ place[2] }}</div>
-    		<div class="col-xs-1">{{ place[3] }}</div>
-    		<div class="col-xs-1">{{ place[4] }}</div>
+    	<tr>
+    		<td>{{ place[0] }}</td>
+    		<td>{{ place[1] }}</td>
+    		<td>{{ place[2] }}</td>
+    		<td>{{ place[3] }}</td>
+    		<td>{{ place[4] }}</td>
     		<p id="a"></p>
-    	</div>
+    	</tr>
     	{% endfor %}
-    <br>
+    </table>
     </div>
 {% endblock %}

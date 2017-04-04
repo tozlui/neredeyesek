@@ -2,21 +2,15 @@ body{
 	background-color: #fff9fc;
 }
 
-table, th, td{
+table, thead, td{
     border: 1px solid black;
     border-collapse: collapse;
     text-align: left;
     padding: 5px;
+    margin-left: 10px:
 }
 
-@media screen and (max-width: 640px) {
-	table {
-		overflow-x: auto;
-		display: block;
-	}
-}
-
-th{
+thead{
     font-weight: bold;
 }
 
@@ -38,9 +32,16 @@ h1{
 }
 
 .row{
+	color:#ffffff;
 	height:140px;
 	overflow:hidden;
 	padding:20px;
+}
+
+.tabdis{
+	width:70%;
+	margin-left:25%;
+	margin-right:25%;
 }
 
 .centered{

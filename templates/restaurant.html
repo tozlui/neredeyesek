@@ -4,31 +4,30 @@
     <div class="page-header">
     	<h1>Restaurants</h1>
     </div>
-    <div class="container">
+    <div class='tabdis'>
     <form action="{{url_for('restaurant_delete')}}" method="post">
-        <div class="col-sm-2"></div>
-        <div class="col-xs-1">ID</div>
-    	<div class="col-sm-2">Name</div>
-    	<div class="col-xs-2">Transportation</div>
-    	<div class="col-xs-1">State</div>
-    	<div class="col-xs-1">Waather Seansitivity</div>
-    	<div class="col-xs-1">Score</div>
-    	<div class="col-xs-1">Votes</div>
-    	<br><br>
+     <table>
+        <th>Select</th>
+        <th>ID</th>
+    	<th>Name</th>
+    	<th>Transportation</th>
+    	<th>State</th>
+    	<th>Waather Seansitivity</th>
+    	<th>Score</th>
+    	<th>Votes</th>
     	{% for place in restaurants %}
-    	<div class="row">
-    		<div class="col-sm-2"><input type="radio" name="select" value="{{ place[0] }}" ></div>
-    		<div class="col-xs-1">{{ place[0] }}</div>
-    		<div class="col-xs-2">{{ place[1] }}</div>
-    		<div class="col-sm-2">{{ place[2] }}</div>
-    		<div class="col-xs-1">{{ place[3] }}</div>
-    		<div class="col-xs-1">{{ place[4] }}</div>
-    		<div class="col-xs-1">{{ place[5] }}</div>
-    		<div class="col-xs-1">{{ place[6] }}</div>
-    		<p id="a"></p>
-    	</div>
+    	<tr>
+    		<td><input type="radio" name="select" value="{{ place[0] }}" ></td>
+    		<td>{{ place[0] }}</td>
+    		<td>{{ place[1] }}</td>
+    		<td>{{ place[2] }}</td>
+    		<td>{{ place[3] }}</td>
+    		<td>{{ place[4] }}</td>
+    		<td>{{ place[5] }}</td>
+    		<td>{{ place[6] }}</td>
+    	</tr>
     	{% endfor %}
-    <br>
+   	</table>
     <input type="submit" value="Remove selected">
     </form>
     </div>
