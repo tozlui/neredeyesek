@@ -65,7 +65,7 @@ def find_a_restaurant(list_of_restaurants, weather_condition):  # weather condit
                 for t in list_of_restaurants:
                     if t.on_foot == False:
                         list_of_restaurants.remove(t)
-                   
+
     for val in list_of_restaurants:
         if weather_condition and (val.on_foot or val.weather_sensitivity):
             continue
@@ -80,10 +80,6 @@ def find_a_restaurant(list_of_restaurants, weather_condition):  # weather condit
                 selected_restaurant = val
     return selected_restaurant
 
-
-# locCode=EUR|TR|06420|ANKARA| > KITA|ULKE|POSTAKODU|IL
-
-
 def weather_checker():
     parse = feedparser.parse("http://rss.accuweather.com/rss/liveweather_rss.asp?metric=1&locCode=EUR|TR|34467"
                              "|ISTANBUL|")
@@ -94,7 +90,6 @@ def weather_checker():
             return True
         else:
             return False
-    # print(parse[0], parse[1], parse[2], parse[3], parse[4], parse[5], parse[6], parse[7], parse[8])
 
 def email_sender():
     a = found
@@ -119,11 +114,6 @@ def email_sender():
     server.quit()
     print('Email sent!')
 
-#names = ["Los Pollos Hermanos", "Burger King", "McDonalds"]
-#scores = [4, 3, 5]
-#on_foots = [False, True, True]
-#weather_sensitivities = [True, False, False]
-
 with dbapi2.connect(app.config['dsn']) as connection:
         cursor = connection.cursor()
         query = """SELECT COUNT(ID) FROM USERS"""
@@ -146,19 +136,16 @@ with dbapi2.connect(app.config['dsn']) as connection:
             cursor.execute(query)
             score_data = json.dumps(cursor.fetchall())
             scores = json.loads(score_data)
-            print(scores)
             query = """SELECT TRANSPORTATION FROM RESTAURANTS
                        WHERE (STATE = 'Active')"""
             cursor.execute(query)
             onfoot_data = json.dumps(cursor.fetchall())
             on_foots = json.loads(onfoot_data)
-            print(on_foots)
             query = """SELECT WEATHER FROM RESTAURANTS
                        WHERE (STATE = 'Active')"""
             cursor.execute(query)
             weather_data = json.dumps(cursor.fetchall())
             weather_sensitivities = json.loads(weather_data)
-            print(weather_sensitivities)
             query = """SELECT EMAIL FROM USERS"""
             cursor.execute(query)
             email_data = json.dumps(cursor.fetchall())
@@ -169,11 +156,11 @@ with dbapi2.connect(app.config['dsn']) as connection:
                 if on_foots[i] == ['On Foot']:
                     on_foots[i][0] = True
                 else:
-                    on_foots[i][0] = False 
+                    on_foots[i][0] = False
                 restaurant_list.append(restaurant(names[i][0], scores[i][0], on_foots[i][0], weather_sensitivities[i][0]))
             found = find_a_restaurant(restaurant_list, weather_checker()).display_restaurant()
             print(found)
-            record = find_a_restaurant(restaurant_list, weather_checker())    
+            record = find_a_restaurant(restaurant_list, weather_checker())
             now = time.strftime("%d/%m/%Y")
             statement = """INSERT INTO STATISTICS (RESTAURANT_NAME, ON_FOOT, SCORE, WEATHER, DATE)
                             VALUES (%s, %s, %s, %s, %s)"""
@@ -201,8 +188,4 @@ with dbapi2.connect(app.config['dsn']) as connection:
                 cursor.execute(statement)
             email_sender()
         else:
-            print("There are still users that did not vote the restaurants!")        
-# for val in restaurant_list:
-# val.display_restaurant()
-
-#email_sender()
+            print("There are still users that did not vote the restaurants!")

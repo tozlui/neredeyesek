@@ -72,7 +72,7 @@ def initialize_database():
         query = """INSERT INTO USERS (USERNAME, EMAIL)
                     VALUES ('dinar', 'berkandinar@hotmail.com'),
                            ('tozlui', 'itozlu93@gmail.com'),
-                           ('yildirimanil', 'anilyildirim922@gmail.com')"""
+                           ('yildirimanil', 'anilyildirim992@gmail.com')"""
         cursor.execute(query)
 
         query = """DROP TABLE IF EXISTS RESTAURANTS CASCADE"""
