@@ -1,6 +1,7 @@
 from settings import *
 from usersops import *
 from restaurant import *
+from main import *
 from user import *
 from flask.helpers import url_for
 from time import sleep
@@ -9,6 +10,11 @@ from flask.globals import session
 @app.route('/',  methods=['GET','POST'])
 def home_page():
     return render_template('home.html')
+
+@app.route('/main',  methods=['GET'])
+def main_page():
+    do_work()
+    return redirect(url_for('home_page'))
 
 @app.route('/login',  methods=['POST'])
 def login_page():
